@@ -1,0 +1,7 @@
+source:
+  s3:
+    bucket: "nyc-tlc"
+    region: "us-east-1"
+
+etl:
+  duration: 6
