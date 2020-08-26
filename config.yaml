@@ -3,5 +3,10 @@ source:
     bucket: "nyc-tlc"
     region: "us-east-1"
 
+spark:
+  master: "spark://mate:7077"
+  app: "etl-airflow"
+  deploy_mode: "client"
+
 etl:
   duration: 6
