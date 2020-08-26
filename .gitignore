@@ -1,2 +1,4 @@
 .idea/
 etl-airflow.iml
+temp/*
+.pylintrc
