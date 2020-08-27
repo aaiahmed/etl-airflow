@@ -14,9 +14,11 @@ def get_spark_session():
     master = conf['spark']['master']
     app_name = conf['spark']['app']
     deploy_mode = conf['spark']['deploy_mode']
+    jar = conf['spark']['jar']
 
     return SparkSession.builder \
         .master(master) \
         .appName(app_name) \
         .config("spark.submit.deployMode", deploy_mode) \
+        .config("spark.jars", jar) \
         .getOrCreate()

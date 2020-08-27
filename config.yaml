@@ -7,6 +7,17 @@ spark:
   master: "spark://mate:7077"
   app: "etl-airflow"
   deploy_mode: "client"
+  jar: "driver/postgresql-42.2.16.jar"
 
 etl:
   duration: 6
+
+dw:
+  postgresql:
+    host: "127.0.0.1"
+    port: "5432"
+    db: "etl_airflow"
+    user: "etl"
+    schema: "raw"
+    table: "load_test"
+    driver: "org.postgresql.Driver"
