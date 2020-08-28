@@ -22,25 +22,6 @@ dag = DAG(
     schedule_interval=timedelta(days=1)
 )
 
-"""
-extract = PythonOperator(
-    task_id='extract_ny_taxi',
-    python_callable=extract,
-    dag=dag
-)
-
-transform = PythonOperator(
-    task_id='transform_ny_taxi',
-    python_callable=transform,
-    dag=dag
-)
-
-load = PythonOperator(
-    task_id='load_ny_taxi',
-    python_callable=load,
-    dag=dag
-)
-"""
 extract = BashOperator(
     task_id='extract_ny_taxi',
     bash_command='{path}/{command}/{command}.sh '
