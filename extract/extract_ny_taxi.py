@@ -9,6 +9,7 @@ from utils import config
 
 conf = config.get_config()
 
+
 def requires_update(obj):
     """
     Returns true if an s3 object should be downloaded.
@@ -24,7 +25,7 @@ def requires_update(obj):
            (obj.key[-11:-4] in months)
 
 
-def extract_from_s3():
+def extract():
     """
     Downloads taxi data from s3.
     :return:
@@ -45,7 +46,7 @@ def main():
     Main function.
     :return:
     """
-    extract_from_s3()
+    extract()
 
 
 if __name__ == "__main__":

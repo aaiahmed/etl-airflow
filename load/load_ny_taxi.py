@@ -2,10 +2,22 @@
 Loads transformed rdd into data warehouse.
 """
 import os
+from airflow.models import Variable
 from utils import config, spark_session
 
 
-def load_taxi_data():
+def get_dw_password():
+    """
+    Returns the password to connect to data warehouse.
+    :return: password
+    """
+
+    if os.getenv("DW_PASSWORD") is not None:
+        return os.getenv("DW_PASSWORD")
+    return Variable.get("DW_PASSWORD")
+
+
+def load():
     """
     Reads taxi data and writes to destination.
     :return:
@@ -15,7 +27,7 @@ def load_taxi_data():
     port = conf['dw']['postgresql']['port']
     db = conf['dw']['postgresql']['db']
     user = conf['dw']['postgresql']['user']
-    password = os.getenv("DW_PASSWORD", "")
+    password = get_dw_password()
     schema = conf['dw']['postgresql']['schema']
     table = conf['dw']['postgresql']['table']
     driver = conf['dw']['postgresql']['driver']
@@ -27,7 +39,7 @@ def load_taxi_data():
     spark = spark_session.get_spark_session()
     spark \
         .read \
-        .csv("temp/transformed",header=True,sep=",")\
+        .csv("temp/transformed", header=True, sep=",")\
         .write \
         .mode("overwrite") \
         .format('jdbc') \
@@ -44,7 +56,7 @@ def main():
     Main function.
     :return:
     """
-    load_taxi_data()
+    load()
 
 
 if __name__ == "__main__":

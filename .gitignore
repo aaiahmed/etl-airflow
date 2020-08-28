@@ -2,3 +2,5 @@
 etl-airflow.iml
 temp/*
 .pylintrc
+*/__pycache__
+scripts

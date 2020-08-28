@@ -5,7 +5,7 @@ from pyspark.sql.functions import lit, monotonically_increasing_id
 from utils import spark_session
 
 
-def transform_taxi_data():
+def transform():
     """
     Transforms data and writes into temp.
     :return:
@@ -13,7 +13,7 @@ def transform_taxi_data():
     spark = spark_session.get_spark_session()
     green_df = spark\
         .read\
-        .csv("temp/green_*.csv",header=True,sep=",")\
+        .csv("temp/green_*.csv", header=True, sep=",")\
         .withColumn("taxi_type", lit('1'))\
         .drop("ehail_fee")\
         .drop("trip_type")\
@@ -22,7 +22,7 @@ def transform_taxi_data():
 
     yellow_df = spark\
         .read\
-        .csv("temp/yellow_*.csv",header=True,sep=",")\
+        .csv("temp/yellow_*.csv", header=True, sep=",")\
         .withColumn('taxi_type', lit('2'))
 
     green_df\
@@ -49,7 +49,7 @@ def main():
     Main function.
     :return:
     """
-    transform_taxi_data()
+    transform()
 
 
 if __name__ == "__main__":
