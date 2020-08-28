@@ -9,7 +9,6 @@ from utils import config
 
 conf = config.get_config()
 
-
 def requires_update(obj):
     """
     Returns true if an s3 object should be downloaded.
