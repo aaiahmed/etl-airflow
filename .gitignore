@@ -3,4 +3,6 @@ etl-airflow.iml
 temp/*
 .pylintrc
 */__pycache__
-scripts
+scripts/airflow*
+scripts/start_spark.sh
+scripts/update_history.sh

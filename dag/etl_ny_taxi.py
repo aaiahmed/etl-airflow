@@ -1,5 +1,6 @@
 """
 DAG for NY Taxi ETL
+Using Airflow BashOperator to use local virtualenv.
 """
 from datetime import timedelta
 from airflow import DAG
@@ -24,21 +25,21 @@ dag = DAG(
 
 extract = BashOperator(
     task_id='extract_ny_taxi',
-    bash_command='{path}/{command}/{command}.sh '
+    bash_command='{path}/scripts/{command}.sh '
         .format(path=path, command='extract'),
     dag=dag
 )
 
 transform = BashOperator(
     task_id='transform_ny_taxi',
-    bash_command='{path}/{command}/{command}.sh '
+    bash_command='{path}/scripts/{command}.sh '
         .format(path=path, command='transform'),
     dag=dag
 )
 
 load = BashOperator(
     task_id='load_ny_taxi',
-    bash_command='{path}/{command}/{command}.sh '
+    bash_command='{path}/scripts/{command}.sh '
         .format(path=path, command='load'),
     dag=dag
 )
